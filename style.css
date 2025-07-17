@@ -1,94 +1,157 @@
-body {
-  font-family: Arial, sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
-  background-color: #fff;
-  color: #222;
+  padding: 0;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  background: #121212;
+  color: #eee;
+  min-height: 100vh;
+  padding: 40px 20px;
+  text-align: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 header {
-  padding: 1rem;
-  text-align: right;
-  background-color: #f0f0f0;
+  margin-bottom: 40px;
 }
 
-button#themeToggle {
-  padding: 0.5rem 1rem;
+#themeToggle {
+  background: linear-gradient(45deg, #b08d57, #d4af37);
+  border: none;
+  padding: 12px 30px;
+  font-weight: 700;
+  border-radius: 30px;
+  color: #121212;
   cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.6);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
 }
 
+#themeToggle:hover,
+#themeToggle:focus {
+  background: linear-gradient(45deg, #d4af37, #b08d57);
+  box-shadow: 0 6px 15px rgba(212, 175, 55, 0.9);
+  outline: none;
+}
+
+/* Gallery Grid */
 .gallery {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Product Card */
 .card {
-  background: #eee;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 200px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.card img {
-  max-width: 100%;
-  border-radius: 6px;
-}
-
-.card h3 {
-  margin: 1rem 0 0.5rem;
-}
-body.dark {
-  background-color: #121212;
-  color: #eee;
-}
-
-body.dark header {
-  background-color: #222;
-}
-
-body.dark .card {
-  background: #333;
-  box-shadow: 0 2px 8px rgba(255,255,255,0.1);
-}
-
-
-/* Fade in animation */
-.gallery .card {
+  background: #1c1c1c;
+  border-radius: 20px;
+  padding: 25px 20px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s forwards;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
-.gallery .card:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.gallery .card:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.gallery .card:nth-child(3) {
-  animation-delay: 0.5s;
+.card:hover,
+.card:focus-within {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.8);
+  outline: none;
 }
 
+/* Card Images */
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+
+/* Titles */
+.card h3 {
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #d4af37; /* Gold accent */
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Descriptions */
+.card p {
+  color: #bbb;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Fade In Up Animation */
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-button#themeToggle:focus {
-  outline: 3px solid #1db954;
-  outline-offset: 2px;
+/* Light Mode */
+body.light {
+  background: #f5f5f5;
+  color: #333;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.card:focus-within {
-  outline: 2px solid #1db954;
+body.light .card {
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light .card:hover,
+body.light .card:focus-within {
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+}
+
+body.light .card h3 {
+  color: #b08d57;
+}
+
+body.light #themeToggle {
+  background: linear-gradient(45deg, #555, #999);
+  color: #f5f5f5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.light #themeToggle:hover,
+body.light #themeToggle:focus {
+  background: linear-gradient(45deg, #999, #555);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  body {
+    padding: 20px 10px;
+  }
+  .card {
+    padding: 20px 15px 25px;
+  }
+  .card h3 {
+    font-size: 1.3rem;
+  }
 }
